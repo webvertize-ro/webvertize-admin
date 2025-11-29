@@ -8,7 +8,7 @@ export default function Admin() {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      window.location.href = '/login';
+      window.location.href = '/';
       return;
     }
 
@@ -54,6 +54,12 @@ export default function Admin() {
             <strong>IP:</strong> {e.ip}
           </p>
           <button className="btn btn-primary">test</button>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6">Hello</div>
+              <div className="col-md-6">World</div>
+            </div>
+          </div>
         </div>
       ))}
     </div>
