@@ -1,4 +1,4 @@
-import client from '../lib/mongodb';
+import client from '../lib/mongodb.js';
 import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
