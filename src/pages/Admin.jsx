@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 export default function Admin() {
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -13,22 +14,43 @@ export default function Admin() {
     }
 
     async function getData() {
-      const res = await fetch('/api/submissions', {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      });
+      try {
+        const res = await fetch('/api/submissions', {
+          headers: {
+            Authorization: 'Bearer' + token,
+          },
+        });
 
-      if (!res.ok) {
+        if (!res.ok) {
+          setError('Error loading data');
+          return;
+        }
+
+        const data = await res.json();
+        setEntries(data);
+      } catch (error) {
         setError('Error loading data');
-        return;
+      } finally {
+        setLoading(false);
       }
-
-      setEntries(await res.json());
     }
 
     getData();
   }, []);
+
+  // Show spinner while loading
+  if (loading) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: '100vh' }}
+      >
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: 20 }}>
@@ -53,13 +75,6 @@ export default function Admin() {
           <p>
             <strong>IP:</strong> {e.ip}
           </p>
-          <button className="btn btn-primary">test</button>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6">Hello</div>
-              <div className="col-md-6">World</div>
-            </div>
-          </div>
         </div>
       ))}
     </div>
