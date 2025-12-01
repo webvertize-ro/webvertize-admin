@@ -3,10 +3,6 @@ import Logo from './Logo';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const StyledLink = styled(Link)`
-  max-width: 100px;
-`;
-
 function Navigation() {
   const handleLogout = () => {
     // Remove token from localStorage
@@ -19,10 +15,10 @@ function Navigation() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <StyledLink className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <Logo />
           Webvertize Admin
-        </StyledLink>
+        </Link>
 
         <div className="d-flex">
           <button className="btn btn-outline-danger" onClick={handleLogout}>
