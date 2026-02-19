@@ -29,6 +29,7 @@ export default function Admin() {
 
         const data = await res.json();
         setEntries(data);
+        console.log('entries: ', entries);
       } catch (error) {
         setError('Error loading data');
       } finally {
