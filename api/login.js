@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   }
 
   const { username, password } = req.body;
+  console.log('username: ', username);
 
   if (!username || !password)
     return res.status(400).json({ error: 'Missing credentials' });
