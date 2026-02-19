@@ -29,7 +29,6 @@ export default function Admin() {
 
         const data = await res.json();
         setEntries(data);
-        console.log('entries: ', entries);
       } catch (error) {
         setError('Error loading data');
       } finally {
@@ -60,7 +59,7 @@ export default function Admin() {
       <h2>Form Submissions</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
-
+      {console.log('entries: ', entries)}
       {entries.map((e) => (
         <div
           key={e._id}
