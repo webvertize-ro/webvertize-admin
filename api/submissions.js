@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     const entries = await collection
       .find(
         {},
-        { projection: { name: 1, email: 1, project_description: 1, ip: 1 } },
+        { projection: { name: 1, email: 1, 'project-description': 1, ip: 1 } },
       )
       .sort({ createdAt: -1 })
       .toArray();
