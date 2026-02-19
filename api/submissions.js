@@ -25,7 +25,10 @@ export default async function handler(req, res) {
     const collection = db.collection('Webvertize');
 
     const entries = await collection
-      .find({}, { projection: { name: 1, email: 1, message: 1, ip: 1 } })
+      .find(
+        {},
+        { projection: { name: 1, email: 1, project_description: 1, ip: 1 } },
+      )
       .sort({ createdAt: -1 })
       .toArray();
 
